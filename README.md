@@ -180,6 +180,64 @@ pygmalion/
 - `pnpm build` - Build for production
 - `pnpm start` - Start production server
 - `pnpm lint` - Run ESLint
+- `pnpm inngest:dev` - Start Inngest dev server (for local development)
+
+## Running Inngest
+
+Inngest handles background job processing for code generation. You have two options:
+
+### Option 1: Inngest Dev Server (Recommended for Development)
+
+1. **Install Inngest CLI** (if not already installed):
+   ```bash
+   npm install -g inngest
+   ```
+
+2. **Start your Next.js development server**:
+   ```bash
+   pnpm dev
+   ```
+
+3. **In a separate terminal, start the Inngest dev server**:
+   ```bash
+   npx inngest-cli@latest dev
+   ```
+   
+   Or add to your `package.json` scripts:
+   ```json
+   "inngest:dev": "inngest-cli dev"
+   ```
+   
+   Then run:
+   ```bash
+   pnpm inngest:dev
+   ```
+
+4. The Inngest dev server will:
+   - Connect to your Next.js app at `http://localhost:3000/api/inngest`
+   - Provide a dashboard at `http://localhost:8288` to monitor functions
+   - Automatically sync your functions and handle events
+
+### Option 2: Inngest Cloud (Production)
+
+For production, deploy your Next.js app and configure Inngest Cloud:
+
+1. Sign up at [inngest.com](https://www.inngest.com)
+2. Create an app and get your signing key
+3. Add to your `.env`:
+   ```env
+   INNGEST_SIGNING_KEY="your-signing-key"
+   INNGEST_EVENT_KEY="your-event-key"
+   ```
+4. Deploy your Next.js app - Inngest will automatically discover your functions
+
+### Environment Variables for Inngest
+
+For local development with the dev server, no additional environment variables are needed. The dev server handles everything automatically.
+
+For production/cloud:
+- `INNGEST_SIGNING_KEY` - Signing key from Inngest dashboard
+- `INNGEST_EVENT_KEY` - Event key from Inngest dashboard (optional)
 
 ## Database Schema
 
