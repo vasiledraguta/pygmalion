@@ -1,5 +1,5 @@
 import { Card } from '@/components/ui/card';
-import { Fragment, MessageRole, MessageType } from '@/generated/prisma';
+import type { Fragment, MessageRole, MessageType } from '@prisma/client';
 import { cn } from '@/lib/utils';
 import { format } from 'date-fns';
 import { ChevronRightIcon, Code2Icon } from 'lucide-react';

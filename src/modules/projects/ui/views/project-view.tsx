@@ -8,7 +8,7 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { MessagesContainter } from '../components/message-container';
 import { Suspense, useState } from 'react';
-import { Fragment } from '@/generated/prisma';
+import type { Fragment } from '@prisma/client';
 import { ProjectHeader } from '../components/project-header';
 import { FragmentWeb } from '../components/fragment-web';
 import { CodeIcon, CrownIcon, EyeIcon } from 'lucide-react';
