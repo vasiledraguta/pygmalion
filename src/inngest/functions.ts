@@ -6,7 +6,7 @@ import {
   createNetwork,
   type Tool,
   type Message,
-  gemini,
+  openai,
   createState,
 } from "@inngest/agent-kit";
 import { Sandbox } from "e2b";
@@ -67,17 +67,9 @@ export const codeAgentFunction = inngest.createFunction(
       const codeAgent = createAgent<AgentState>({
         name: "code-agent",
         system: PROMPT,
-        model: gemini({
-          model: "gemini-2.5-flash",
-          apiKey: process.env.GEMINI_API_KEY,
-          defaultParameters: {
-            generationConfig: {
-              thinkingConfig: {
-                thinkingBudget: 0,
-                includeThoughts: false,
-              },
-            },
-          },
+        model: openai({
+          model: "gpt-4.1-mini",
+          apiKey: process.env.OPENAI_API_KEY,
         }),
         tools: [
           createTool({
@@ -204,18 +196,18 @@ export const codeAgentFunction = inngest.createFunction(
       const fragmentTitleGenerator = createAgent<AgentState>({
         name: "fragment-title-generator",
         system: FRAGMENT_TITLE_PROMPT,
-        model: gemini({
-          model: "gemini-2.5-flash",
-          apiKey: process.env.GEMINI_API_KEY,
+        model: openai({
+          model: "gpt-4.1-nano",
+          apiKey: process.env.OPENAI_API_KEY,
         }),
       });
 
       const responseGenerator = createAgent<AgentState>({
         name: "response-title-generator",
         system: RESPONSE_PROMPT,
-        model: gemini({
-          model: "gemini-2.5-flash",
-          apiKey: process.env.GEMINI_API_KEY,
+        model: openai({
+          model: "gpt-4.1-nano",
+          apiKey: process.env.OPENAI_API_KEY,
         }),
       });
 
